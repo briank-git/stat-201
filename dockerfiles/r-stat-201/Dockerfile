@@ -45,6 +45,9 @@ RUN jupyter labextension disable @jupyterlab/cell-toolbar-extension
 # Configure shortcuts-extension to remove Shift-M cell merge shortcut
 COPY shortcuts.jupyterlab-settings /home/${NB_USER}/.jupyter/lab/user-settings/\@jupyterlab/shortcuts-extension/shortcuts.jupyterlab-settings
 
+# Copy jupyter_server_config.py which allows students to see and delete hidden files
+COPY jupyter_server_config.py /home/${NB_USER}/.jupyter
+
 # Make sure everything in the home folder is owned by NB_USER for running docker image locally.
 USER root
 RUN chown -R ${NB_USER} /home/${NB_USER}
